@@ -1,35 +1,54 @@
 ---
 import { Image } from "astro:assets";
-import fondo from "../assets/fondo azul.png";
+import Starfield from "~/components/starfield.astro";
 import logo from "../assets/logo no fondo.png";
 ---
 
-<section class="relative h-full">
-  <div class="absolute inset-0 z-0">
-    <Image
-      src={fondo}
-      alt="Fondo Estancia Core"
-      class="h-full w-full object-cover"
-    />
-  </div>
+<section class="relative h-full overflow-hidden">
+  <Starfield />
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-background"></div>
   <div class="relative z-10 flex h-full flex-col items-center justify-center px-8">
-    <div class="mb-6 max-w-md">
+    <div class="mb-6 max-w-md animate-float">
       <Image
         src={logo}
         alt="Estancia Core"
-        class="w-full object-contain"
+        class="w-full object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]"
       />
     </div>
     <h2 class="flex flex-col items-center gap-4">
-      <p class="text-center text-2xl font-light text-white md:text-4xl">
+      <p class="text-center text-2xl font-light text-white md:text-4xl animate-fade-in">
         Tu casa inteligente.<br /><span class="font-semibold">Tu mente tranquila.</span>
       </p>
     </h2>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <div class="flex flex-col items-center text-white/60">
+      <span class="text-sm mb-2">Deslizá para descubrir</span>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
   </div>
 </section>
 
 <style>
   section {
     min-height: 100vh;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
   }
 </style>

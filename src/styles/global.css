@@ -1,4 +1,13 @@
-/* TODO: consider creating <Button> and <GradientText> components */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+[data-theme="dark"] {
+  background: radial-gradient(ellipse at top, #1a1a2e 0%, #0a0a0f 100%);
+}
+
+* {
+  font-family: 'Roboto', system-ui, sans-serif;
+}
+
 a,
 .btn {
   @apply transition-colors duration-200;
@@ -6,7 +15,23 @@ a,
   @apply focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-transparent;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
 .gradient-text {
   @apply bg-clip-text text-transparent;
   @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
+}
+
+[data-theme="dark"] .text-primary {
+  @apply text-pink-400;
+}
+
+[data-theme="dark"] .text-secondary {
+  @apply text-indigo-400;
+}
+
+::selection {
+  background: rgba(236, 72, 153, 0.3);
 }

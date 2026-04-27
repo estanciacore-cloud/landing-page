@@ -1,8 +1,6 @@
 ---
-import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import type { FooterLink } from "~/types";
-import fondo from "~/assets/fondo azul.png";
 
 const links: Array<FooterLink> = [
   {
@@ -28,27 +26,31 @@ const links: Array<FooterLink> = [
 ];
 ---
 
-<footer class="relative flex h-64 items-center justify-center py-16">
-  <div class="absolute inset-0 z-0">
-    <Image
-      src={fondo}
-      alt="Fondo"
-      class="h-full w-full object-cover opacity-60"
-    />
-  </div>
-  <ul class="relative z-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+<footer class="relative flex flex-col items-center justify-center gap-8 py-16">
+  <ul class="flex flex-wrap justify-center gap-4">
     {
       links.map((link) => (
         <li>
           <a
-            class="flex size-16 items-center justify-center rounded-full border-2 border-white/50 bg-black/30 p-4 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+            class="group flex size-14 items-center justify-center rounded-full border border-white/20 bg-white/5 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:border-primary/60 hover:bg-primary/20 hover:shadow-[0_0_25px_rgba(236,72,153,0.3)]"
             href={link.url}
           >
             <span class="sr-only">{link.description}</span>
-            <Icon class="size-full" name={link.icon} />
+            <Icon class="size-full transition-transform duration-300 group-hover:scale-110" name={link.icon} />
           </a>
         </li>
       ))
     }
   </ul>
+  <div class="text-center text-sm text-text-offset">
+    <p>&copy; 2024 Estancia Core. Todos los derechos reservados.</p>
+    <p class="mt-1">San Luis, Argentina</p>
+  </div>
 </footer>
+
+<style>
+  footer {
+    background: linear-gradient(180deg, transparent 0%, rgba(139, 92, 246, 0.05) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+</style>
