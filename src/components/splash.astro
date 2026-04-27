@@ -1,72 +1,35 @@
 ---
-import { Icon } from "astro-icon/components";
-import HeroImage from "~/components/hero-image.astro";
-import Starfield from "~/components/starfield.astro";
+import { Image } from "astro:assets";
+import fondo from "../assets/fondo azul.png";
+import logo from "../assets/logo estancia core sin fondo.png";
 ---
 
-<section class="relative h-full bg-black">
-  <Starfield />
-  <div id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
-    <HeroImage />
+<section class="relative h-full">
+  <div class="absolute inset-0 z-0">
+    <Image
+      src={fondo}
+      alt="Fondo Estancia Core"
+      class="h-full w-full object-cover"
+    />
   </div>
-  <div class="relative grid h-full place-items-center sm:grid-cols-2">
-    <h2
-      class="flex flex-col items-center gap-2 self-end sm:gap-4 sm:self-auto sm:justify-self-end"
-    >
-      <Icon name="logomark" class="size-20 text-white md:size-32" />
-      <div
-        class="gradient-text text-center font-extrabold tracking-tighter text-6xl md:text-8xl"
-      >
-        Estancia
-        <br />Core
-      </div>
-      <p class="mt-4 text-xl text-gray-300 md:text-2xl">
-        Tu casa inteligente.<br />Tu mente tranquila.
+  <div class="relative z-10 flex h-full flex-col items-center justify-center px-8">
+    <div class="mb-6 max-w-md">
+      <Image
+        src={logo}
+        alt="Estancia Core"
+        class="w-full object-contain"
+      />
+    </div>
+    <h2 class="flex flex-col items-center gap-4">
+      <p class="text-center text-2xl font-light text-white md:text-4xl">
+        Tu casa inteligente.<br /><span class="font-semibold">Tu mente tranquila.</span>
       </p>
     </h2>
-    <div
-      id="hero-image"
-      class="w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start"
-    >
-      <HeroImage />
-    </div>
   </div>
 </section>
 
-<noscript>
-  <style>
-    #splash-bg-fallback {
-      display: block;
-    }
-  </style>
-</noscript>
-
 <style>
-  @keyframes float {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-
-    100% {
-      transform: translate3d(0, 30px, 0);
-    }
-  }
-
-  #hero-image {
-    animation: float linear 2.5s infinite alternate;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    #hero-image {
-      @apply animate-none;
-    }
-
-    :global(#starfield) {
-      @apply hidden;
-    }
-
-    #splash-bg-fallback {
-      @apply block;
-    }
+  section {
+    min-height: 100vh;
   }
 </style>
