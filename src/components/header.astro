@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import ThemeSwitcher from "~/components/theme-switcher.astro";
 import type { NavItem } from "~/types";
-import logo from "~/assets/logo estancia core sin fondo.png";
+import logo from "~/assets/logo no fondo.png";
 
 const navItems: Array<NavItem> = [
   { title: "Servicios", url: "#features" },
@@ -58,7 +58,7 @@ const navItems: Array<NavItem> = [
             </button>
           </header>
           <div class="flex justify-center">
-            <Icon name="logomark" class="size-16" />
+            <Image src={logo} alt="Estancia Core" class="size-16" />
           </div>
           <nav>
             <ul class="flex flex-col">

@@ -1,10 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import ContentSection from "~/components/content-section.astro";
+import logoSvg from "~/assets/logo no fondo.svg";
 ---
 
 <ContentSection title="¿Quiénes somos?" id="intro">
-  <Icon slot="eyebrow" name="logomark" class="size-32" />
+  <Image slot="eyebrow" src={logoSvg} alt="Estancia Core" class="size-32" />
   <Fragment slot="lead">
     Somos <span class="text-primary">Estancia Core</span>, tu partner tecnológico en San Luis.
     Transformamos tu hogar en un espacio inteligente, seguro y conectado.
