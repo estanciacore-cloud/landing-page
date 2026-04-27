@@ -1,0 +1,141 @@
+---
+import Footer from "~/components/footer.astro";
+import Header from "~/components/header.astro";
+import "~/styles/index.css";
+
+const currentYear = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Política de Privacidad - Estancia Core</title>
+    <meta name="description" content="Política de Privacidad de Estancia Core - Proveedor oficial de tecnología WhatsApp Business API." />
+  </head>
+  <body class="min-h-screen bg-black text-gray-300">
+    <Header />
+    <main class="pt-24 pb-16">
+      <article class="mx-auto max-w-3xl px-6">
+        <h1 class="text-3xl font-bold text-white">Política de Privacidad</h1>
+        <p class="mt-2 text-sm text-gray-500">&uacute;ltima actualizaci&oacute;n: {currentYear}</p>
+
+        <section class="mt-12 space-y-8">
+          <section>
+            <h2 class="text-xl font-semibold text-white">1. Introducci&oacute;n</h2>
+            <p class="mt-4">
+              Estancia Core ("nosotros", "nuestra" o "la empresa") opera como proveedor oficial de tecnolog&iacute;a
+              para la API de WhatsApp Business de Meta. Esta Pol&iacute;tica de Privacidad describe c&oacute;mo
+              recopilamos, usamos, divulgamos y protegemos la informaci&oacute;n de los usuarios que utilizan
+              nuestros servicios.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-semibold text-white">2. Informaci&oacute;n que Recopilamos</h2>
+            <p class="mt-4">Recopilamos los siguientes tipos de informaci&oacute;n:</p>
+            <ul class="mt-4 list-disc space-y-2 pl-6">
+              <li>
+                <strong>Informaci&oacute;n de contacto:</strong> Nombre, direcci&oacute;n de correo electr&oacute;nico,
+                n&uacute;mero de tel&eacute;fono y empresa.
+              </li>
+              <li>
+                <strong> Datos de la API de WhatsApp:</strong> Cuando utilizan nuestros servicios integrados con
+                WhatsApp Business API, procesamos &uacute;nicamente los mensajes necesarios para la prestaci&oacute;n
+                del servicio contratado.
+              </li>
+              <li>
+                <strong>Informaci&oacute;n t&eacute;cnica:</strong> Direcci&oacute;n IP, tipo de navegador,
+                dispositivo y datos de uso del servicio.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-semibold text-white">3. C&oacute;mo Usamos la Informaci&oacute;n</h2>
+            <p class="mt-4">Utilizamos la informaci&oacute;n recopilada para:</p>
+            <ul class="mt-4 list-disc space-y-2 pl-6">
+              <li>Prestar los servicios de integraci&oacute;n con WhatsApp Business API.</li>
+              <li>Procesar solicitudes y atender consultas de nuestros clientes.</li>
+              <li>Mejorar y optimizar nuestros servicios.</li>
+              <li>Cumplir con obligaciones legales y regulatorias.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-semibold text-white">4. Divulgaci&oacute;n de Informaci&oacute;n</h2>
+            <p class="mt-4">
+              No vendemos, alquilamos ni comercializamos los datos personales de nuestros clientes o los datos
+              de sus usuarios finales. Compartimos informaci&oacute;n &uacute;nicamente en las siguientes
+              circunstancias:
+            </p>
+            <ul class="mt-4 list-disc space-y-2 pl-6">
+              <li>
+                <strong>Proveedores de servicios:</strong> Con proveedores que nos ayudan a operar
+                nuestros servicios (hosting, infraestructura).
+              </li>
+              <li>
+                <strong>Meta (Facebook):</strong> Como proveedor integrado con WhatsApp Business API, compartimos
+                datos &uacute;nicamente seg&uacute;n las pol&iacute;ticas de Meta para la prestaci&oacute;n
+                del servicio.
+              </li>
+              <li>
+                <strong>Cumplimiento legal:</strong> Cuando sea requerido por ley o autoridad competente.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-semibold text-white">5. Seguridad de los Datos</h2>
+            <p class="mt-4">
+              Implementamos medidas de seguridad t&eacute;cnicas y organizativas apropiadas para proteger
+              sus datos contra acceso no autorizado, alteraci&oacute;n, divulgaci&oacute;n o destrucci&oacute;n.
+              Utilizamos cifrado, controles de acceso y auditor&iacute;as peri&oacute;dicas para garantizar
+              la seguridad de la informaci&oacute;n.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-semibold text-white">6. Retenci&oacute;n de Datos</h2>
+            <p class="mt-4">
+              Conservamos los datos personales &uacute;nicamente durante el tiempo necesario
+              para los fines establecidos en esta pol&iacute;tica. Los datos de la API de WhatsApp
+              se procesan en tiempo real y no se almacenan de forma innecesaria, salvo
+              lo requerido por el cliente para sus propios fines.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-semibold text-white">7. Derechos del Usuario</h2>
+            <p class="mt-4">
+              Los usuarios tienen derecho a solicitar acceso, correcci&oacute;n, eliminaci&oacute;n
+              o portabilidad de sus datos personales. Para ejercer estos derechos, contactenos
+              en <a class="text-whatsapp hover:underline" href="mailto:info@estanciacore.net.ar">info@estanciacore.net.ar</a>.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-semibold text-white">8. Uso de la API de WhatsApp Business</h2>
+            <p class="mt-4">
+              Como proveedor de tecnolog&iacute;a, nuestras soluciones operan bajo las Pol&iacute;ticas de
+              Comercio de Meta. No utilizamos WhatsApp para spam ni mensajes masivos no solicitados.
+              Todos los mensajes se/env&iacute;an &uacute;nicamente a usuarios que han dado su consentimiento
+              expl&iacute;cito para recibir comunicaciones a trav&eacute;s de este canal.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-semibold text-white">9. Contacto</h2>
+            <p class="mt-4">
+              Para preguntas sobre esta Pol&iacute;tica de Privacidad, puede contactarnos en:<br />
+              <strong>Email:</strong> <a class="text-whatsapp hover:underline" href="mailto:info@estanciacore.net.ar">info@estanciacore.net.ar</a><br />
+              <strong>Direcci&oacute;n:</strong> Av. Fundador 1351 Dpto 1, San Luis, Argentina
+            </p>
+          </section>
+        </section>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

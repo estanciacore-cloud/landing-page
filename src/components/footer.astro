@@ -1,56 +1,41 @@
 ---
-import { Icon } from "astro-icon/components";
-import type { FooterLink } from "~/types";
-
-const links: Array<FooterLink> = [
-  {
-    url: "mailto:info@estanciacore.net.ar",
-    description: "Envianos un email",
-    icon: "mdi:email",
-  },
-  {
-    url: "https://wa.me/542665035855",
-    description: "Escribinos por WhatsApp",
-    icon: "mdi:whatsapp",
-  },
-  {
-    url: "tel:+542665035855",
-    description: "Llamanos",
-    icon: "mdi:phone",
-  },
-  {
-    url: "https://www.instagram.com/estanciacore",
-    description: "Seguinos en Instagram",
-    icon: "fa-brands:instagram",
-  },
-];
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="relative flex flex-col items-center justify-center gap-8 py-16">
-  <ul class="flex flex-wrap justify-center gap-4">
-    {
-      links.map((link) => (
-        <li>
-          <a
-            class="group flex size-14 items-center justify-center rounded-full border border-white/10 bg-white/5 p-3 text-white backdrop-blur-sm transition-all duration-300 hover:border-primary/60 hover:bg-primary/20 hover:shadow-[0_0_30px_rgba(236,72,153,0.3)]"
-            href={link.url}
-          >
-            <span class="sr-only">{link.description}</span>
-            <Icon class="size-full transition-transform duration-300 group-hover:scale-110" name={link.icon} />
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-  <div class="text-center text-sm text-text-offset">
-    <p>&copy; 2024 Estancia Core. Todos los derechos reservados.</p>
-    <p class="mt-1">San Luis, Argentina</p>
+<footer class="border-t border-white/10 bg-black/40">
+  <div class="mx-auto max-w-4xl px-6 py-12">
+    <div class="grid gap-8 md:grid-cols-2">
+      <div>
+        <h3 class="text-lg font-semibold text-white">Estancia Core</h3>
+        <p class="mt-2 text-sm text-gray-400">
+          Proveedor oficial de tecnología WhatsApp Business API.
+        </p>
+        <p class="mt-4 text-sm text-gray-400">
+          Av. Fundador 1351 Dpto 1<br />
+          San Luis, Argentina
+        </p>
+      </div>
+      <div class="text-right">
+        <ul class="flex flex-col gap-2 text-sm">
+          <li>
+            <a class="text-gray-400 hover:text-whatsapp transition-colors" href="mailto:info@estanciacore.net.ar">
+              info@estanciacore.net.ar
+            </a>
+          </li>
+          <li>
+            <a class="text-gray-400 hover:text-whatsapp transition-colors" href="https://wa.me/542665035855">
+              WhatsApp: +54 2665 035855
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-gray-500 sm:flex-row">
+      <p>&copy; {currentYear} Estancia Core. Todos los derechos reservados.</p>
+      <div class="flex gap-4">
+        <a class="hover:text-white transition-colors" href="/privacy-policy">Política de Privacidad</a>
+        <a class="hover:text-white transition-colors" href="/terms-of-service">Términos de Servicio</a>
+      </div>
+    </div>
   </div>
 </footer>
-
-<style>
-  footer {
-    background: linear-gradient(180deg, transparent 0%, rgba(15, 15, 35, 0.5) 100%);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-  }
-</style>

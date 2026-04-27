@@ -1,6 +1,6 @@
 [data-theme="light"] {
-  --color-primary: #ec4899;
-  --color-secondary: #6366f1;
+  --color-primary: #25D366;
+  --color-secondary: #128C7E;
   --color-text: #1e1e2e;
   --color-text-offset: #4a4a6a;
   --color-background: #f8fafc;
@@ -9,20 +9,20 @@
 }
 
 [data-theme="dark"] {
-  --color-primary: #ec4899;
-  --color-secondary: #818cf8;
+  --color-primary: #25D366;
+  --color-secondary: #3BC559;
   --color-text: #f1f5f9;
   --color-text-offset: #94a3b8;
-  --color-background: #0a0a0f;
-  --color-background-offset: #1e1e2e;
+  --color-background: #0a0a0a;
+  --color-background-offset: #1a1a1a;
   --color-border: rgba(255, 255, 255, 0.08);
-  --color-glow: rgba(236, 72, 153, 0.15);
-  --color-glow-secondary: rgba(129, 140, 248, 0.15);
+  --color-glow: rgba(37, 211, 102, 0.15);
+  --color-glow-secondary: rgba(18, 140, 126, 0.15);
 }
 
 :root {
-  --color-primary: #ec4899;
-  --color-secondary: #818cf8;
-  --color-glow: rgba(236, 72, 153, 0.15);
-  --color-glow-secondary: rgba(129, 140, 248, 0.15);
+  --color-primary: #25D366;
+  --color-secondary: #128C7E;
+  --color-glow: rgba(37, 211, 102, 0.15);
+  --color-glow-secondary: rgba(18, 140, 126, 0.15);
 }

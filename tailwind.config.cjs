@@ -10,6 +10,11 @@ module.exports = {
       colors: {
         primary: "var(--color-primary)",
         secondary: "var(--color-secondary)",
+        whatsapp: {
+          DEFAULT: "#25D366",
+          dark: "#1FA952",
+          light: "#3BC559",
+        },
       },
       textColor: {
         default: "var(--color-text)",
