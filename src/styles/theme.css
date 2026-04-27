@@ -1,11 +1,11 @@
 [data-theme="light"] {
-  --color-primary: theme("colors.pink.500");
-  --color-secondary: theme("colors.indigo.500");
-  --color-text: theme("colors.gray.900");
-  --color-text-offset: theme("colors.gray.600");
-  --color-background: theme("colors.gray.50");
-  --color-background-offset: theme("colors.gray.100");
-  --color-border: theme("colors.gray.900" / 10%);
+  --color-primary: #ec4899;
+  --color-secondary: #6366f1;
+  --color-text: #1e1e2e;
+  --color-text-offset: #4a4a6a;
+  --color-background: #f8fafc;
+  --color-background-offset: #e2e8f0;
+  --color-border: rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] {
@@ -15,12 +15,14 @@
   --color-text-offset: #94a3b8;
   --color-background: #0a0a0f;
   --color-background-offset: #1e1e2e;
-  --color-border: #ffffff / 10%;
-
-  background: linear-gradient(180deg, #0a0a1a 0%, #050510 100%);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-glow: rgba(236, 72, 153, 0.15);
+  --color-glow-secondary: rgba(129, 140, 248, 0.15);
 }
 
 :root {
   --color-primary: #ec4899;
   --color-secondary: #818cf8;
+  --color-glow: rgba(236, 72, 153, 0.15);
+  --color-glow-secondary: rgba(129, 140, 248, 0.15);
 }

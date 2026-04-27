@@ -5,107 +5,56 @@
 <script>
   import invariant from "tiny-invariant";
 
-  const COUNT = 400;
-  const SPEED = 0.3;
-  const DEPTH = 150;
-
-  interface Star {
+  interface Particle {
     x: number;
     y: number;
-    z: number;
-    xPrev: number;
-    yPrev: number;
-    size: number;
-    opacity: number;
+    vx: number;
+    vy: number;
+    radius: number;
+    color: string;
+    alpha: number;
+    connections: number[];
   }
-
-  class Star {
-    x: number;
-    y: number;
-    z: number;
-    xPrev: number;
-    yPrev: number;
-    size: number;
-    opacity: number;
-
-    constructor(x = 0, y = 0, z = 0) {
-      this.x = x;
-      this.y = y;
-      this.z = z;
-      this.xPrev = x;
-      this.yPrev = y;
-      this.size = Math.random() * 2 + 0.5;
-      this.opacity = Math.random() * 0.8 + 0.2;
-    }
-
-    update(width: number, height: number, speed: number) {
-      this.xPrev = this.x;
-      this.yPrev = this.y;
-      this.z -= speed * 0.1;
-
-      if (this.z <= 0) {
-        this.reset(width, height);
-      } else {
-        const scale = DEPTH / this.z;
-        this.x = this.xPrev * scale;
-        this.y = this.yPrev * scale;
-      }
-    }
-
-    reset(width: number, height: number) {
-      this.x = Math.random() * width - width / 2;
-      this.y = Math.random() * height - height / 2;
-      this.xPrev = this.x;
-      this.yPrev = this.y;
-      this.z = DEPTH;
-      this.size = Math.random() * 2 + 0.5;
-      this.opacity = Math.random() * 0.8 + 0.2;
-    }
-
-    draw(ctx: CanvasRenderingContext2D, centerX: number, centerY: number) {
-      const scale = DEPTH / this.z;
-      const x = this.xPrev * scale + centerX;
-      const y = this.yPrev * scale + centerY;
-      const radius = this.size * scale * 0.5;
-
-      if (radius < 0.1 || x < 0 || x > ctx.canvas.width || y < 0 || y > ctx.canvas.height) {
-        return;
-      }
-
-      const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
-      const alpha = Math.min(this.opacity * scale / DEPTH * 2, 1);
-      gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
-      gradient.addColorStop(0.5, `rgba(200, 220, 255, ${alpha * 0.6})`);
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(x, y, radius, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  const stars: Star[] = Array.from({ length: COUNT }, () => {
-    const star = new Star(0, 0, 0);
-    star.z = Math.random() * DEPTH;
-    return star;
-  });
-
-  let rafId = 0;
 
   const canvas = document.querySelector("#starfield-canvas") as HTMLCanvasElement;
   invariant(canvas, "canvas should not be null");
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
   const container = document.querySelector("#starfield") as HTMLElement;
   invariant(container, "container should not be null");
-  const resizeObserver = new ResizeObserver(setup);
-  resizeObserver.observe(container);
 
-  function setup() {
-    invariant(ctx, "canvas context should not be null");
-    rafId > 0 && cancelAnimationFrame(rafId);
+  const PARTICLE_COUNT = 80;
+  const CONNECTION_DISTANCE = 150;
+  const PARTICLE_SPEED = 0.5;
 
+  const colors = [
+    '236, 72, 153',    // pink
+    '129, 140, 248',   // indigo
+    '168, 85, 247',    // purple
+    '56, 189, 248',    // cyan
+  ];
+
+  let particles: Particle[] = [];
+  let rafId = 0;
+
+  function randomColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  function initParticles(width: number, height: number) {
+    particles = Array.from({ length: PARTICLE_COUNT }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * PARTICLE_SPEED,
+      vy: (Math.random() - 0.5) * PARTICLE_SPEED,
+      radius: Math.random() * 2 + 1,
+      color: randomColor(),
+      alpha: Math.random() * 0.5 + 0.3,
+      connections: [],
+    }));
+  }
+
+  function resize() {
     const { clientWidth: width, clientHeight: height } = container;
     const dpr = window.devicePixelRatio || 1;
     canvas.width = width * dpr;
@@ -113,41 +62,104 @@
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     ctx.scale(dpr, dpr);
+    initParticles(width, height);
+  }
 
-    rafId = requestAnimationFrame(frame);
+  function drawConnections(p1: Particle, p2: Particle, dist: number) {
+    const alpha = Math.max(0, 1 - dist / CONNECTION_DISTANCE) * 0.3;
+    const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
+    gradient.addColorStop(0, `rgba(${p1.color}, ${alpha})`);
+    gradient.addColorStop(1, `rgba(${p2.color}, ${alpha})`);
+
+    ctx.beginPath();
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 1;
+    ctx.moveTo(p1.x, p1.y);
+    ctx.lineTo(p2.x, p2.y);
+    ctx.stroke();
   }
 
   function frame() {
-    invariant(ctx, "canvas context should not be null");
     const { clientWidth: width, clientHeight: height } = container;
 
-    ctx.fillStyle = "rgba(10, 10, 15, 0.15)";
+    ctx.fillStyle = "rgba(10, 10, 15, 0.1)";
     ctx.fillRect(0, 0, width, height);
 
-    const centerX = width / 2;
-    const centerY = height / 2;
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
 
-    for (const star of stars) {
-      star.update(width, height, SPEED);
-      star.draw(ctx, centerX, centerY);
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
+      ctx.fill();
+
+      const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 4);
+      glow.addColorStop(0, `rgba(${p.color}, ${p.alpha * 0.5})`);
+      glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.fillStyle = glow;
+      ctx.fillRect(p.x - p.radius * 4, p.y - p.radius * 4, p.radius * 8, p.radius * 8);
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const dx = p.x - p2.x;
+        const dy = p.y - p2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECTION_DISTANCE) {
+          drawConnections(p, p2, dist);
+        }
+      }
     }
 
     rafId = requestAnimationFrame(frame);
   }
 
-  setup();
+  const resizeObserver = new ResizeObserver(resize);
+  resizeObserver.observe(container);
+
+  resize();
+  rafId = requestAnimationFrame(frame);
 </script>
 
 <style>
   #starfield {
-    background: linear-gradient(180deg, #0a0a1a 0%, #050510 100%);
+    background: linear-gradient(135deg, #0a0a1a 0%, #0f0f23 50%, #0a0a1a 100%);
+  }
+
+  #starfield::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(129, 140, 248, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 60%);
+    pointer-events: none;
   }
 
   #starfield::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center bottom, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 50px,
+      rgba(255, 255, 255, 0.01) 50px,
+      rgba(255, 255, 255, 0.01) 51px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 50px,
+      rgba(255, 255, 255, 0.01) 50px,
+      rgba(255, 255, 255, 0.01) 51px
+    );
     pointer-events: none;
   }
 </style>

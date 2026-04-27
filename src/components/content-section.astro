@@ -24,3 +24,9 @@ const { title, id } = Astro.props;
   </p>
   <slot />
 </section>
+
+<style>
+  :global([data-theme="dark"]) section {
+    background: linear-gradient(180deg, transparent 0%, rgba(15, 15, 35, 0.5) 100%);
+  }
+</style>

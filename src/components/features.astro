@@ -45,18 +45,19 @@ const features: Array<FeatureItem> = [
 
 <ContentSection title="Nuestros Servicios" id="features">
   <Fragment slot="lead">
-    Ofrecemos <span class="text-primary">soluciones integrales</span> para tu hogar o negocio.
-    Desde la instalación de <span class="text-primary">infraestructura</span> hasta sistemas <span class="text-primary">inteligentes</span>.
+    Ofrecemos <span class="text-primary font-semibold">soluciones integrales</span> para tu hogar o negocio.
+    Desde la instalación de <span class="text-primary font-semibold">infraestructura</span> hasta sistemas <span class="text-primary font-semibold">inteligentes</span>.
   </Fragment>
   <ul class="grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
     {
       features.map(({ title, description, icon }) => (
-        <li class="group flex flex-col items-center gap-4 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(236,72,153,0.15)]">
-          <div class="size-16 rounded-full border border-primary/30 bg-gradient-to-br from-primary/20 to-transparent p-4 transition-transform duration-300 group-hover:scale-110 group-hover:border-primary/60">
+        <li class="group relative flex flex-col items-center gap-4 rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/30 hover:bg-gradient-to-br hover:from-primary/[0.08] hover:to-transparent hover:shadow-[0_0_40px_rgba(236,72,153,0.15)]">
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+          <div class="relative z-10 size-16 rounded-full border border-primary/20 bg-gradient-to-br from-primary/10 to-transparent p-4 transition-all duration-300 group-hover:scale-110 group-hover:border-primary/40 group-hover:shadow-[0_0_20px_rgba(236,72,153,0.3)]">
             <Icon name={icon} class="size-full text-primary" />
           </div>
-          <p class="text-center text-lg font-medium">{title}</p>
-          <p class="text-center text-sm text-text-offset">{description}</p>
+          <p class="relative z-10 text-center text-lg font-medium">{title}</p>
+          <p class="relative z-10 text-center text-sm text-text-offset">{description}</p>
         </li>
       ))
     }

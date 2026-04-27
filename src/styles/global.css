@@ -1,16 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
-[data-theme="dark"] {
-  background: radial-gradient(ellipse at top, #1a1a2e 0%, #0a0a0f 100%);
-}
-
 * {
   font-family: 'Roboto', system-ui, sans-serif;
 }
 
+[data-theme="dark"] {
+  background: linear-gradient(135deg, #0a0a1a 0%, #0f0f23 50%, #08081a 100%);
+}
+
+[data-theme="light"] {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
 a,
 .btn {
-  @apply transition-colors duration-200;
+  @apply transition-all duration-200;
   @apply hover:text-secondary;
   @apply focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-transparent;
 }
@@ -21,17 +25,42 @@ h1, h2, h3, h4, h5, h6 {
 
 .gradient-text {
   @apply bg-clip-text text-transparent;
-  @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
-}
-
-[data-theme="dark"] .text-primary {
-  @apply text-pink-400;
-}
-
-[data-theme="dark"] .text-secondary {
-  @apply text-indigo-400;
+  @apply bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500;
 }
 
 ::selection {
   background: rgba(236, 72, 153, 0.3);
+  color: inherit;
+}
+
+[data-theme="dark"] {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+[data-theme="dark"] .bg-default {
+  background: rgba(30, 30, 46, 0.8);
+}
+
+[data-theme="dark"] .bg-offset {
+  background: rgba(30, 30, 46, 0.6);
+}
+
+[data-theme="dark"] .text-primary {
+  color: var(--color-primary);
+}
+
+[data-theme="dark"] .text-secondary {
+  color: var(--color-secondary);
+}
+
+[data-theme="dark"] .border-default {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .text-text-offset {
+  color: var(--color-text-offset);
+}
+
+[data-theme="dark"] .text-text {
+  color: var(--color-text);
 }
