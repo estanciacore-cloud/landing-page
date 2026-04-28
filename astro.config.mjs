@@ -1,5 +1,6 @@
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
+import cloudflare from "@astrojs/cloudflare";
 import { defineConfig } from "astro/config";
 import path from "path";
 
@@ -7,7 +8,8 @@ import path from "path";
 export default defineConfig({
   site: "https://estanciacore.net.ar/",
   integrations: [tailwind(), icon()],
-  output: "static",
+  output: "hybrid",
+  adapter: cloudflare(),
   vite: {
     resolve: {
       alias: {
