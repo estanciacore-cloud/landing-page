@@ -16,8 +16,7 @@ This is a landing page for Estancia Core, a WhatsApp Business API Tech Provider.
 │   ├── components/    # UI components (.astro, .tsx)
 │   ├── pages/         # Pages (index.astro, privacy-policy.astro, etc.)
 │   ├── styles/        # Global CSS files
-│   ├── config/        # Site configuration
-│   └── data/          # Data files (features, etc.)
+│   └── assets/        # Project assets (logos, images)
 ├── public/            # Static assets (images, favicon)
 ├── astro.config.mjs   # Astro configuration
 ├── tailwind.config.mjs # Tailwind configuration
@@ -35,10 +34,11 @@ npm run preview  # Preview production build
 
 ### Key Files
 - `src/pages/index.astro` - Main landing page
-- `src/config/site.ts` - Site metadata and configuration
-- `src/data/features.ts` - Features section data
 - `src/components/header.astro` - Site header
+- `src/components/footer.astro` - Site footer
 - `src/styles/global.css` - Global styles
+- `src/pages/privacy-policy.astro` - Privacy policy page
+- `src/pages/terms-of-service.astro` - Terms of service page
 
 ## Notes
 - This project uses Astro 4.x (not 5.x)
