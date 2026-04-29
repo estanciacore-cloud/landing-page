@@ -10,6 +10,11 @@ export default defineConfig({
   integrations: [tailwind(), icon()],
   output: "hybrid",
   adapter: cloudflare(),
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/squoosh",
+    },
+  },
   vite: {
     resolve: {
       alias: {
